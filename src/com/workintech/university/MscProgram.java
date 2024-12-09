@@ -1,4 +1,6 @@
 package com.workintech.university;
 
-public interface MscProgram {
+public interface MscProgram extends BscProgram{
+    void makeALab();
+    void teachToWriteAcademicPaper();
 }
