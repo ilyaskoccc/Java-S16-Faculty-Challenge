@@ -80,8 +80,5 @@ Eğitmenlerin bu programlarla ilişkisi, minimum kod tekrarı ile interfaceler v
 
 ---
 
-## Kullanım Talimatları
-
-1. **Repository'yi Kopyalayın**:
-   ```bash
-   git clone https://github.com/username/java-s16-faculty-challenge.git asd
+## License
+This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
