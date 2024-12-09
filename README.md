@@ -1,70 +1,87 @@
-Java-S16-Faculty-Challenge
-Üniversite Fakülte Sistemi
-Bu proje, bir üniversite içerisindeki fakülte, departman, ders ve eğitmenler arasındaki ilişkileri modelleyen bir sistemdir. Nesne yönelimli programlama (OOP) prensiplerini temel alır ve ilişki tabanlı modellemeyi içerir.
+# Üniversite Fakülte Sistemi
 
-Proje Özeti
-Bu sistem:
+Bu proje, bir üniversite içerisinde fakülte, departman, ders ve eğitmenler arasındaki ilişkileri modelleyen bir sistemdir. Proje, nesne yönelimli programlama (OOP) prensiplerini ve ilişki tabanlı modellemeyi kullanarak tasarlanmıştır.
 
-Birden fazla fakülte ve bu fakültelere bağlı departmanları içerir.
-Departmanlara özgü değişkenler ve ders yapıları ile zenginleştirilmiştir.
-Eğitmenlerin farklı öğrenci gruplarına farklı görevlerle ders verebildiği bir yapı sunar.
-Sınıflar ve İlişkiler
-1. Faculty Sınıfı
-Fakülteleri temsil eder. İçerisinde:
+## Proje Özeti
 
-id: Fakülte kimlik numarası.
-name: Fakülte adı.
-createdDate: Kuruluş tarihi.
-address: Fakültenin adresi.
-dean: Fakülte dekanı.
-departments: Fakülteye bağlı departmanlar bulunur (bir koleksiyon ya da liste).
-2. Department Sınıfı
-Departmanları temsil eder. İçerisinde:
+Bir üniversite sistemi içinde:
+- Birden fazla fakülte olabilir ve her fakülteye bağlı birden fazla departman bulunabilir.
+- Departmanların altında dersler ve eğitmenler tanımlanabilir.
+- Sistem, departmanlara özel değişkenler, metodlar ve ders yapıları ile zenginleştirilmiştir.
 
-id: Departman kimlik numarası.
-name: Departman adı.
-departmentHead: Departman başkanı.
-faculty: Bağlı olduğu fakülte.
-Specialized Departments
-Bazı departmanlar kendilerine özel değişkenler ve metodlar içerir. Örneğin:
+---
 
-Computer Engineering:
-programmingLanguagesShouldBeTaught: Öğretilecek programlama dillerinin yer aldığı bir liste.
-Her departman, lessonToLearn metodunu @Override ederek departmana özgü ders içeriklerini tanımlar.
+## Sınıflar ve İlişkiler
 
-3. Course Sınıfı
-Dersleri temsil eder. İçerisinde:
+### 1. **Faculty Sınıfı**
+Fakülteleri temsil eder. İçerisinde aşağıdaki bilgiler yer alır:
+- `id`: Fakülte kimlik numarası.
+- `name`: Fakülte adı.
+- `createdDate`: Fakültenin kurulduğu tarih.
+- `address`: Fakültenin adresi.
+- `dean`: Fakültenin dekanı.
+- `departments`: Fakülte altında bulunan departmanlar (bir liste veya koleksiyon).
 
-id: Ders kimlik numarası.
-name: Ders adı.
-gpa: Dersin ortalamaya katkısı.
-Bir departman birden fazla ders içerebilir. Ancak her ders yalnızca bir departmana aittir.
+### 2. **Department Sınıfı**
+Departmanları temsil eder. İçerisinde aşağıdaki bilgiler yer alır:
+- `id`: Departman kimlik numarası.
+- `name`: Departman adı.
+- `departmentHead`: Departman başkanı.
+- `faculty`: Bağlı olduğu fakülte.
 
-4. Instructor Sınıfı
-Eğitmenleri temsil eder. İçerisinde:
+### 3. **Specialized Departments**
+Bazı departmanlar, kendilerine özel değişkenler ve metodlar içerebilir. Örneğin:
+- **Computer Engineering** departmanında:
+  - `programmingLanguagesShouldBeTaught`: Bölümde öğretilecek programlama dillerinin yer aldığı bir liste.
 
-id: Eğitmen kimlik numarası.
-firstName: Adı.
-lastName: Soyadı.
-salary: Maaşı.
-hasMsc: Yüksek lisans derecesine sahip olup olmadığı.
-hasPhd: Doktora derecesine sahip olup olmadığı.
-Eğitmen Görevleri
-Eğitmenler farklı öğrenci gruplarına ders verebilirler:
+#### Not:
+Departman sınıfından türetilen her özel departman, `lessonToLearn` metodunu **@Override** ederek kendi ders içeriklerini tanımlar.
 
-BSc (Lisans) Programı:
-presentLesson
-takeExam
-MSc (Yüksek Lisans) Programı:
-presentLesson
-takeExam
-makeALab
-teachToWriteAcademicPaper
-PhD (Doktora) Programı:
-presentLesson
-takeExam
-makeALab
-teachToWriteAcademicPaper
-teachAcademicResearch
-introduceStudentToAcademicStaff
-Bu görevler, interfaceler ve miras kullanılarak minimum kod tekrarı ile modellenmiştir.
+---
+
+### 4. **Course Sınıfı**
+Dersleri temsil eder. İçerisinde aşağıdaki bilgiler yer alır:
+- `id`: Ders kimlik numarası.
+- `name`: Ders adı.
+- `gpa`: Dersin not ortalamasına katkısı.
+
+Bir departman birden fazla ders içerebilir. Ancak her ders yalnızca bir departmana bağlıdır.
+
+---
+
+### 5. **Instructor Sınıfı**
+Eğitmenleri temsil eder. İçerisinde aşağıdaki bilgiler yer alır:
+- `id`: Eğitmen kimlik numarası.
+- `firstName`: Eğitmenin adı.
+- `lastName`: Eğitmenin soyadı.
+- `salary`: Eğitmenin maaşı.
+- `hasMsc`: Yüksek lisans derecesine sahip olup olmadığı.
+- `hasPhd`: Doktora derecesine sahip olup olmadığı.
+
+#### Instructor Görevleri:
+Eğitmenler farklı öğrenci gruplarına (BSc, MSc, PhD) ders verebilirler. Her grup için farklı görevleri bulunur:
+- **BSc Programı**: 
+  - `presentLesson`
+  - `takeExam`
+- **MSc Programı**:
+  - `presentLesson`
+  - `takeExam`
+  - `makeALab`
+  - `teachToWriteAcademicPaper`
+- **PhD Programı**:
+  - `presentLesson`
+  - `takeExam`
+  - `makeALab`
+  - `teachToWriteAcademicPaper`
+  - `teachAcademicResearch`
+  - `introduceStudentToAcademicStaff`
+
+Eğitmenlerin bu programlarla ilişkisi, minimum kod tekrarı ile interfaceler ve miras yapıları kullanılarak sağlanabilir.
+
+---
+
+## Kullanım Talimatları
+
+1. **Repository'yi Kopyalayın**:
+   ```bash
+   git clone https://github.com/username/java-s16-faculty-challenge.git asd
